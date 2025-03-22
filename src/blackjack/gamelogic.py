@@ -1,5 +1,5 @@
 from enum import Enum
-from blackjack_types import Hand
+from .blackjack_types import Hand
 
 class Standing(Enum):
     Player = 1

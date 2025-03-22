@@ -15,9 +15,6 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
-packages = [
-    { from = "src" }
-]
 
 [project.scripts]
 blackjack = "blackjack.blackjack:main"

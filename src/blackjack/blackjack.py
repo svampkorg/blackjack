@@ -1,5 +1,5 @@
-from statehandling import state, draw_logo
-from gamelogic import Standing, print_standing
+from .statehandling import state, draw_logo
+from .gamelogic import Standing, print_standing
 
 def game_loop():
     is_play_again = True
