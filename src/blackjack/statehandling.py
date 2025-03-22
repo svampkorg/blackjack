@@ -1,9 +1,10 @@
 import random
 from os import system
+
 from .art import logo
-from .blackjack_types import Deck, Card, Hand, deck
-from .gamelogic import Standing, get_hand_value, get_standing
 from .arthandling import cards_to_art
+from .blackjack_types import Card, Deck, Hand, deck
+from .gamelogic import Standing, get_hand_value, get_standing
 
 
 def draw_logo():

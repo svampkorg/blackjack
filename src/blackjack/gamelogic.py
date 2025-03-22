@@ -1,4 +1,5 @@
 from enum import Enum
+
 from .blackjack_types import Hand
 
 
