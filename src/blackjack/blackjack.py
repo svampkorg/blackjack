@@ -35,13 +35,18 @@ def game_loop():
         is_play_again = False if state.player_wallet <= 0 else True if input("Do you want keep going? (enter 'y' to continue): ") == 'y' else False
     if state.player_wallet <= 0:
         print("Game's Over! You have nothing left to bet with.")
-try:
-    game_loop()
 
-    if (state.player_wallet > 25):
-        print(f"You've earned ${ state.player_wallet - 25 }. Congratulations! Bye!")
-    else:
-        print(f"You've lost ${ 25 - state.player_wallet }. Very unfortunate. Bye!")
+def main():
+    try:
+        game_loop()
 
-except KeyboardInterrupt:
-    print(f"\nGame's Over.")
+        if (state.player_wallet > 25):
+            print(f"You've earned ${ state.player_wallet - 25 }. Congratulations! Bye!")
+        else:
+            print(f"You've lost ${ 25 - state.player_wallet }. Very unfortunate. Bye!")
+
+    except KeyboardInterrupt:
+        print(f"\nGame's Over.")
+
+if __name__ == "__main__":
+    main()

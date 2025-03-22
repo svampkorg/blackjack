@@ -1,0 +1,23 @@
+[build-system]
+requires = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "blackjack"
+version = "0.0.1"
+authors = [
+  { name="Bobbo", email="svampkorg@gmail.com" },
+]
+description = "A simple blackjack game."
+requires-python = ">=3.6"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+]
+packages = [
+    { from = "src" }
+]
+
+[project.scripts]
+blackjack = "blackjack.blackjack:main"
