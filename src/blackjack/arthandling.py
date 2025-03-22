@@ -1,5 +1,6 @@
 from .blackjack_types import Card
 
+
 def value_to_sign(value: int) -> str:
 
     match value:
@@ -14,16 +15,22 @@ def value_to_sign(value: int) -> str:
         case _:
             return str(value)
 
+
 def card_art(card: Card) -> list[str]:
 
     card_parts: list[str] = []
     card_parts.append(f"╭───╮")
-    card_parts.append(f"│{value_to_sign(card.value)}{" " if card.value == 10 else "  "}│")
+    card_parts.append(
+        f"│{value_to_sign(card.value)}{" " if card.value == 10 else "  "}│"
+    )
     card_parts.append(f"│ {card.color} │")
-    card_parts.append(f"│{" " if card.value == 10 else "  "}{value_to_sign(card.value)}│")
+    card_parts.append(
+        f"│{" " if card.value == 10 else "  "}{value_to_sign(card.value)}│"
+    )
     card_parts.append(f"╰───╯")
 
     return card_parts
+
 
 def facedown_card_art() -> list[str]:
 
@@ -36,7 +43,8 @@ def facedown_card_art() -> list[str]:
 
     return card_parts
 
-def cards_to_art(cards: list[Card|None]):
+
+def cards_to_art(cards: list[Card | None]):
 
     cards_arts: list[list[str]] = []
     full_art_len = len(facedown_card_art()) if not cards[0] else len(card_art(cards[0]))

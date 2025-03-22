@@ -5,6 +5,7 @@ from .blackjack_types import Deck, Card, Hand, deck
 from .gamelogic import Standing, get_hand_value, get_standing
 from .arthandling import cards_to_art
 
+
 def draw_logo():
 
     system("clear")
@@ -12,17 +13,22 @@ def draw_logo():
     print(logo)
     print(f"Player wallet: ${ state.player_wallet }, (enter ? for rules)")
 
+
 def draw_rules():
 
     draw_logo()
 
     print("\nThe rules are as follow:\n")
-    print("Get as close to 21 as possible by either stand, or hit (Hit means draw a card).")
+    print(
+        "Get as close to 21 as possible by either stand, or hit (Hit means draw a card)."
+    )
     print("Ace counts as 11, unless your total pass 21, in which case it counts as 1.")
     print("2 through 9 counts as is.")
     print("10, Jackal, Queen and King all count as 10.\n")
     print("A hand over 21 is considered a bust, a loss.\n")
-    print("Total of 21 equals Jackpot, a win. Unless dealer also has Jackpot, in which case dealer wins.")
+    print(
+        "Total of 21 equals Jackpot, a win. Unless dealer also has Jackpot, in which case dealer wins."
+    )
     print("Dealer must draw at a hand < 16, and stand at 17 or above.\n")
     print("Jackpot payoff is 3/2 and a regular win is 1/1.\n")
     print("Press any key to continue.")
@@ -35,28 +41,36 @@ def random_card_from(available_cards: Deck) -> Card:
 
     return Card(color, value)
 
+
 def available_deck(currently_dealed: Deck) -> Deck:
 
     full_deck = deck.copy()
 
     for color in currently_dealed:
-        full_deck[color] = [card_value for card_value in full_deck[color]
-                            if card_value not in currently_dealed[color]]
+        full_deck[color] = [
+            card_value
+            for card_value in full_deck[color]
+            if card_value not in currently_dealed[color]
+        ]
 
     return full_deck
+
 
 def add_card_to_deck(current_deck: Deck, card: Card) -> Deck:
 
     new_deck = current_deck.copy()
 
     if card.color not in new_deck:
-        new_deck.update({ card.color: []})
+        new_deck.update({card.color: []})
 
     new_deck[card.color].append(card.value)
 
     return new_deck
 
-def deal_cards(available_cards: Deck, currently_dealt: Deck, nr_to_deal: int) -> tuple[list[Card | None], Deck]:
+
+def deal_cards(
+    available_cards: Deck, currently_dealt: Deck, nr_to_deal: int
+) -> tuple[list[Card | None], Deck]:
 
     new_cards: list[Card | None] = []
 
@@ -66,6 +80,7 @@ def deal_cards(available_cards: Deck, currently_dealt: Deck, nr_to_deal: int) ->
         new_cards.append(new_card)
 
     return new_cards, currently_dealt
+
 
 class GameState:
 
@@ -91,12 +106,16 @@ class GameState:
 
         # NOTE: Player
         available_cards = available_deck(self.currently_dealt)
-        new_player_cards, self.currently_dealt = deal_cards(available_cards, self.currently_dealt, 2)
+        new_player_cards, self.currently_dealt = deal_cards(
+            available_cards, self.currently_dealt, 2
+        )
         self.player_hand.extend(new_player_cards)
 
         # NOTE: Dealer
         available_cards = available_deck(self.currently_dealt)
-        new_dealer_cards, self.currently_dealt = deal_cards(available_cards, self.currently_dealt, 2)
+        new_dealer_cards, self.currently_dealt = deal_cards(
+            available_cards, self.currently_dealt, 2
+        )
         self.dealer_hand.extend(new_dealer_cards)
 
     def dealer_hand_value(self) -> int:
@@ -114,13 +133,17 @@ class GameState:
     def hit_player(self):
 
         available_cards = available_deck(state.currently_dealt)
-        new_player_cards, state.currently_dealt = deal_cards(available_cards, state.currently_dealt, 1)
+        new_player_cards, state.currently_dealt = deal_cards(
+            available_cards, state.currently_dealt, 1
+        )
         state.player_hand.extend(new_player_cards)
 
     def hit_dealer(self):
 
         available_cards = available_deck(state.currently_dealt)
-        new_dealer_cards, state.currently_dealt = deal_cards(available_cards, state.currently_dealt, 1)
+        new_dealer_cards, state.currently_dealt = deal_cards(
+            available_cards, state.currently_dealt, 1
+        )
         state.dealer_hand.extend(new_dealer_cards)
 
     def bet(self):
@@ -182,11 +205,18 @@ class GameState:
 
         if conceal_dealer:
             draw_logo()
-            print(f"Your hand:\n{ cards_to_art(self.player_hand) }Value: { self.player_hand_value() }\n")
+            print(
+                f"Your hand:\n{ cards_to_art(self.player_hand) }Value: { self.player_hand_value() }\n"
+            )
             print(f"Dealer's hand:\n{ cards_to_art([self.dealer_hand[0], None]) }")
         else:
             draw_logo()
-            print(f"Your hand:\n{ cards_to_art(self.player_hand) }Value: { self.player_hand_value() }\n")
-            print(f"Dealer's hand:\n{ cards_to_art(self.dealer_hand) }Value: { self.dealer_hand_value() }\n")
+            print(
+                f"Your hand:\n{ cards_to_art(self.player_hand) }Value: { self.player_hand_value() }\n"
+            )
+            print(
+                f"Dealer's hand:\n{ cards_to_art(self.dealer_hand) }Value: { self.dealer_hand_value() }\n"
+            )
+
 
 state = GameState()
