@@ -2,8 +2,11 @@ from .statehandling import state, draw_logo
 from .gamelogic import Standing, print_standing
 
 def game_loop():
+
     is_play_again = True
+
     while is_play_again:
+
         state.shuffle()
         state.initial_deal()
 
@@ -33,11 +36,14 @@ def game_loop():
         print_standing(state.standing())
         
         is_play_again = False if state.player_wallet <= 0 else True if input("Do you want keep going? (enter 'y' to continue): ") == 'y' else False
+
     if state.player_wallet <= 0:
         print("Game's Over! You have nothing left to bet with.")
 
 def main():
+
     try:
+
         game_loop()
 
         if (state.player_wallet > 25):
@@ -49,4 +55,5 @@ def main():
         print(f"\nGame's Over.")
 
 if __name__ == "__main__":
+
     main()

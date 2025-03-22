@@ -2,6 +2,7 @@ from enum import Enum
 from .blackjack_types import Hand
 
 class Standing(Enum):
+
     Player = 1
     Dealer = 2
     PlayerBlackjack = 3
@@ -11,7 +12,9 @@ class Standing(Enum):
     Draw = 7
 
 def get_hand_value(hand: Hand) -> int:
+
     value = 0
+
     for card in hand:
         if not card:
             continue
@@ -24,9 +27,11 @@ def get_hand_value(hand: Hand) -> int:
                 value += 11
         else:
             value += card.value
+
     return value
 
 def get_standing(player: int, dealer: int):
+
     if player > 21:
         return Standing.PlayerBust
     elif dealer > 21:
@@ -43,6 +48,7 @@ def get_standing(player: int, dealer: int):
         return Standing.Dealer
 
 def print_standing(standing: Standing):
+
     match standing:
         case Standing.Draw:
             print("It's a draw! Nobody wins! ¯\\_(ツ)_/¯")
