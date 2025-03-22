@@ -1,4 +1,4 @@
-from blackjack_types import Card
+from .blackjack_types import Card
 
 class colors:
     HEADER = '\033[95m'

@@ -1,3 +1,15 @@
-python blackjack.py to run the game
+clone this, cd into blackjack and run:
+```shell
+pip install .
+```
+..to install blackjack!
 
-or install the package.. I don't know how tho. I'm new to Python :^)
+Run blackjack with:
+```shell
+blackjack
+```
+
+To uninstall blackjack (but why?), simply run:
+```shell
+pip uninstall blackjack
+```
